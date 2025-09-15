@@ -28,30 +28,66 @@ public class FileHandlingActivity {
         try {
             log.createNewFile();
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
         
         // c. Write messages to files
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/notes.txt"))) {
             bw.write("Don't forget to commit at each step!");
         } catch (IOException e) {
-            System.err.println("Error writing to file: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/data.txt"))) {
             bw.write("01100100 01100001 01110100 01100001");
         } catch (IOException e) {
-            System.err.println("Error writing to file: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/log.txt"))) {
             bw.write("File made!\nFile edited!");
         } catch (IOException e) {
-            System.err.println("Error writing to file: " + e.getMessage());
+            System.out.println(e.getMessage());
         }
         
         // d. Read and display file contents
+        try (BufferedReader br = new BufferedReader(new FileReader("JavaFileSystem/notes.txt"))) {
+            System.out.println("notes.txt:");
+            String line = br.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println();
         
+        try (BufferedReader br = new BufferedReader(new FileReader("JavaFileSystem/data.txt"))) {
+            System.out.println("data.txt:");
+            String line = br.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("JavaFileSystem/log.txt"))) {
+            System.out.println("log.txt:");
+            String line = br.readLine();
+            while (line != null) {
+                System.out.println(line);
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         // e. Create backup directory
         
         // f. Copy contents to backup file
