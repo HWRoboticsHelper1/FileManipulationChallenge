@@ -3,11 +3,11 @@ import java.io.*;
 public class FileHandlingActivity {
     public static void main(String[] args) {
         // Your code here
-        
+
         // a. Create main directory
         File dir = new File("JavaFileSystem");
         dir.mkdir();
-        
+
         // b. Create three text files
         File notes = new File("JavaFileSystem/notes.txt");
         File data = new File("JavaFileSystem/data.txt");
@@ -30,7 +30,7 @@ public class FileHandlingActivity {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
+
         // c. Write messages to files
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/notes.txt"))) {
             bw.write("Don't forget to commit at each step!");
@@ -49,7 +49,7 @@ public class FileHandlingActivity {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
+
         // d. Read and display file contents
         try (BufferedReader br = new BufferedReader(new FileReader("JavaFileSystem/notes.txt"))) {
             System.out.println("notes.txt:");
@@ -63,7 +63,7 @@ public class FileHandlingActivity {
         }
 
         System.out.println();
-        
+
         try (BufferedReader br = new BufferedReader(new FileReader("JavaFileSystem/data.txt"))) {
             System.out.println("data.txt:");
             String line = br.readLine();
@@ -91,9 +91,26 @@ public class FileHandlingActivity {
         // e. Create backup directory
         File subDir = new File("JavaFileSystem/Backup");
         subDir.mkdir();
-        
+
         // f. Copy contents to backup file
-        
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/Backup/backup.txt"))) {
+            for (String fileName : new String[] { "notes.txt", "data.txt", "log.txt" }) {
+                try (BufferedReader br = new BufferedReader(new FileReader("JavaFileSystem/" + fileName))) {
+                    bw.write(fileName + ":\n");
+                    String line = br.readLine();
+                    while (line != null) {
+                        bw.write(line + "\n");
+                        line = br.readLine();
+                    }
+                    bw.write("\n");
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
         // g. List all files in both directories
     }
 }
