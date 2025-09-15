@@ -88,6 +88,8 @@ public class FileHandlingActivity {
             System.out.println(e.getMessage());
         }
 
+        System.out.println();
+
         // e. Create backup directory
         File subDir = new File("JavaFileSystem/Backup");
         subDir.mkdir();
@@ -112,5 +114,28 @@ public class FileHandlingActivity {
         }
 
         // g. List all files in both directories
+        if (dir.exists() && dir.isDirectory()) {
+            System.out.println("In " + dir.getName() + ":");
+            File[] files = dir.listFiles();
+
+            for (File file : files) {
+                if (file.isFile()) {
+                    System.out.println(file.getName());
+                }
+            }
+        }
+
+        System.out.println("");
+
+        if (subDir.exists() && subDir.isDirectory()) {
+            System.out.println("In JavaFileSystem/" + subDir.getName() + ":");
+            File[] files = subDir.listFiles();
+
+            for (File file : files) {
+                if (file.isFile()) {
+                    System.out.println(file.getName());
+                }
+            }
+        }
     }
 }
