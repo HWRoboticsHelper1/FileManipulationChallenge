@@ -9,6 +9,27 @@ public class FileHandlingActivity {
         dir.mkdir();
         
         // b. Create three text files
+        File notes = new File("JavaFileSystem/notes.txt");
+        File data = new File("JavaFileSystem/data.txt");
+        File log = new File("JavaFileSystem/log.txt");
+
+        try {
+            notes.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            data.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            log.createNewFile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         
         // c. Write messages to files
         
