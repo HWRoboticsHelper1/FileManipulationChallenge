@@ -28,10 +28,27 @@ public class FileHandlingActivity {
         try {
             log.createNewFile();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.getMessage();
         }
         
         // c. Write messages to files
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/notes.txt"))) {
+            bw.write("Don't forget to commit at each step!");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/data.txt"))) {
+            bw.write("01100100 01100001 01110100 01100001");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("JavaFileSystem/log.txt"))) {
+            bw.write("File made!\nFile edited!");
+        } catch (IOException e) {
+            System.err.println("Error writing to file: " + e.getMessage());
+        }
         
         // d. Read and display file contents
         
